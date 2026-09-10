@@ -1,0 +1,51 @@
+title: QA 教育訓練
+description: 新進品保人員的流程訓練教材 — 進料檢驗、成品測試、不良品處理
+url: "https://loin123-rgb.github.io"
+baseurl: "/qa-training"
+
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+color_scheme: light
+search_enabled: true
+search:
+  heading_level: 3
+  previews: 3
+
+heading_anchors: true
+
+# 流程圖用 mermaid,直接寫在 ```mermaid 區塊裡
+mermaid:
+  version: "10.9.1"
+
+# {: .warning } 之類的標註方塊必須在這裡登記,否則只會變成普通段落
+callouts:
+  warning:
+    title: 注意
+    color: red
+  important:
+    title: 重點
+    color: yellow
+  note:
+    title: 補充
+    color: blue
+  example:
+    title: 範例
+    color: green
+
+aux_links:
+  "在 GitHub 上檢視":
+    - "https://github.com/loin123-rgb/qa-training"
+aux_links_new_tab: true
+
+back_to_top: true
+back_to_top_text: "回到頂端"
+
+footer_content: '本教材為通用性訓練內容,實際判定一律以公司核發的最新管制文件為準。'
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

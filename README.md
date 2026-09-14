@@ -22,6 +22,12 @@
 | [自我檢核](https://loin123-rgb.github.io/qa-training/checklist/) | 30 / 60 / 90 天檢核表 | — |
 | [公司手冊](https://loin123-rgb.github.io/qa-training/handbook/) | 品檢組實際編製的三份手冊:進料檢驗、製程巡檢、彙整資料與邏輯分析 | 依手冊 |
 
+## 互動工具
+
+[製程分布實驗室](https://loin123-rgb.github.io/qa-training/lab/)——貼上量測值,
+即時看直方圖、常態參考曲線、標準差涵蓋率,並由抽樣推估整批不良率。
+純前端,資料只在瀏覽器處理,不上傳。
+
 ## 公司手冊區
 
 `handbook/` 收錄品檢組實際編製的手冊,由 Word 原檔自動轉換,**內容未經改寫**。

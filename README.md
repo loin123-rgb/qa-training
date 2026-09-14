@@ -14,6 +14,7 @@
 
 | 章節 | 內容 | 時數 |
 |:--|:--|:--|
+| [品保的進化史](https://loin123-rgb.github.io/qa-training/history/) | 六個紀元、五句口號 — 這些規定是怎麼來的 | 40m |
 | [第一章 · 基礎](https://loin123-rgb.github.io/qa-training/basics/) | 品質關卡全貌、名詞對照 | 2h |
 | [第二章 · IQC 進料檢驗](https://loin123-rgb.github.io/qa-training/iqc/) | 流程、抽樣計畫、判定與填表 | 6h + 實作 |
 | [第三章 · 成品測試](https://loin123-rgb.github.io/qa-training/testing/) | 測試流程、流量點與誤差限、校正設定點 | 6h + 實作 |

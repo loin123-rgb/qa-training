@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>品保的進化史 | QA 教育訓練</title>
+<meta name="description" content="品質管理一二〇年:從匠人印記、專職檢驗、休哈特管制圖、戴明 PDCA、ISO 9001 到預測性品質——品保這一百多年只做了一件事,把介入的時點一路往前搬。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@600;700&display=swap">
+
+<style>
+:root{
+  --paper:#EDEFEC;
+  --surface:#F8F9F7;
+  --ink:#141B1E;
+  --ink-2:#414D50;
+  --ink-3:#6E797B;
+  --rule:#CED4CF;
+  --rule-soft:#DEE3DE;
+  --blue:#1D4E5F;
+  --blue-soft:#82A9B4;
+  --band:#E3E8E5;
+  --signal:#A93720;
+  --brass:#836420;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1518;
+    --surface:#171F22;
+    --ink:#E0E6E3;
+    --ink-2:#AEBAB8;
+    --ink-3:#808C8C;
+    --rule:#2B3639;
+    --rule-soft:#212B2E;
+    --blue:#7CB8C8;
+    --blue-soft:#3E6C79;
+    --band:#182124;
+    --signal:#E2775C;
+    --brass:#C99E4C;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1518;
+  --surface:#171F22;
+  --ink:#E0E6E3;
+  --ink-2:#AEBAB8;
+  --ink-3:#808C8C;
+  --rule:#2B3639;
+  --rule-soft:#212B2E;
+  --blue:#7CB8C8;
+  --blue-soft:#3E6C79;
+  --band:#182124;
+  --signal:#E2775C;
+  --brass:#C99E4C;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Noto Sans TC","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+
+.wrap{
+  max-width:1060px;
+  margin:0 auto;
+  padding-inline:24px;
+  padding-block:0 72px;
+}
+
+/* ---------- shared type roles ---------- */
+.label{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  line-height:1.6;
+}
+.serif{font-family:"Noto Serif TC",Georgia,"Times New Roman",serif}
+
+/* ---------- back to training site ---------- */
+.backbar{
+  border-bottom:1px solid var(--rule-soft);
+  padding-block:14px;
+}
+.backbar a{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.74rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .15s,border-color .15s;
+}
+.backbar a:hover{color:var(--blue);border-bottom-color:var(--blue-soft)}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  padding-block:56px 40px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.eyebrow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 18px;
+  align-items:baseline;
+}
+.eyebrow .dot{color:var(--blue-soft)}
+h1{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-weight:700;
+  font-size:clamp(2.5rem,7.5vw,4.4rem);
+  line-height:1.12;
+  letter-spacing:.02em;
+  margin:0;
+  text-wrap:balance;
+}
+.deck{
+  max-width:34em;
+  font-size:1.06rem;
+  color:var(--ink-2);
+  margin:0;
+}
+.deck strong{
+  color:var(--ink);
+  font-weight:500;
+  border-bottom:2px solid var(--blue-soft);
+  padding-bottom:1px;
+}
+
+/* ---------- chart ---------- */
+.chart-block{padding-block:44px 8px}
+.chart-frame{
+  overflow-x:auto;
+  border:1px solid var(--rule);
+  background:var(--surface);
+  padding:8px 4px 4px;
+}
+.chart-frame svg{display:block;min-width:660px;width:100%;height:auto}
+.cap{
+  margin:14px 0 0;
+  font-size:.86rem;
+  color:var(--ink-3);
+  max-width:56em;
+  line-height:1.7;
+}
+
+svg .grid{stroke:var(--rule);stroke-width:1}
+svg .limit{stroke:var(--blue-soft);stroke-width:1.2;stroke-dasharray:7 5}
+svg .centerline{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 4}
+svg .band{fill:var(--band)}
+svg .series{fill:none;stroke:var(--blue);stroke-width:2}
+svg .pt{fill:var(--surface);stroke:var(--blue);stroke-width:2}
+svg .pt-now{fill:var(--brass);stroke:var(--brass)}
+svg .tick{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:var(--ink-3)}
+svg .axis{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;fill:var(--ink-3)}
+svg .ptlabel{font-family:"Noto Sans TC",sans-serif;font-size:12.5px;fill:var(--ink-2)}
+svg .note{font-family:"Noto Sans TC",sans-serif;font-size:13px;fill:var(--signal)}
+svg .note-sub{font-family:"Noto Sans TC",sans-serif;font-size:12px;fill:var(--ink-3)}
+
+/* ---------- slogan ladder ---------- */
+.ladder{
+  padding-block:56px 0;
+  margin-top:56px;
+  border-top:2px solid var(--ink);
+}
+.steps{
+  display:flex;
+  flex-direction:column;
+  margin-top:26px;
+  border-top:1px solid var(--rule-soft);
+}
+.step{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 148px;
+  gap:12px 24px;
+  align-items:baseline;
+  padding-block:22px;
+  border-bottom:1px solid var(--rule-soft);
+}
+.step-n{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.78rem;
+  letter-spacing:.1em;
+  color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.step-slogan{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-weight:700;
+  font-size:clamp(1.14rem,2.7vw,1.44rem);
+  line-height:1.5;
+  color:var(--ink);
+}
+.step-slogan em{font-style:normal;color:var(--blue)}
+.step-note{
+  display:block;
+  font-family:"Noto Sans TC",sans-serif;
+  font-weight:400;
+  font-size:.95rem;
+  line-height:1.75;
+  color:var(--ink-2);
+  margin-top:7px;
+  max-width:42em;
+}
+.step-tag{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;
+  letter-spacing:.12em;
+  color:var(--ink-3);
+  text-align:right;
+  line-height:1.7;
+}
+.step-tag b{
+  display:block;
+  color:var(--blue);
+  font-weight:500;
+  font-size:.9rem;
+  letter-spacing:.05em;
+}
+
+/* ---------- eras ---------- */
+.eras{
+  display:flex;
+  flex-direction:column;
+  border-top:1px solid var(--rule);
+  margin-top:56px;
+}
+.era{
+  display:grid;
+  grid-template-columns:196px minmax(0,1fr);
+  gap:36px;
+  padding-block:44px;
+  border-bottom:1px solid var(--rule-soft);
+}
+.era-rail{display:flex;flex-direction:column;gap:16px}
+.numeral{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-size:2.6rem;
+  line-height:1;
+  color:var(--blue-soft);
+  font-weight:600;
+}
+.years{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:1.02rem;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+  color:var(--ink);
+}
+.pos{display:flex;flex-direction:column;gap:7px;margin-top:2px}
+.track{
+  position:relative;
+  height:3px;
+  background:var(--rule);
+}
+.track::after{
+  content:"";
+  position:absolute;
+  top:-3.5px;
+  left:calc(var(--x) * 100%);
+  width:10px;
+  height:10px;
+  margin-left:-5px;
+  border-radius:50%;
+  background:var(--blue);
+}
+.track-ends{
+  display:flex;
+  justify-content:space-between;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.66rem;
+  letter-spacing:.1em;
+  color:var(--ink-3);
+}
+
+.era-body{display:flex;flex-direction:column;gap:18px}
+.era h2{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-weight:700;
+  font-size:clamp(1.5rem,3.4vw,2rem);
+  line-height:1.35;
+  margin:0;
+  text-wrap:balance;
+}
+.thesis{
+  margin:0;
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-size:1.14rem;
+  line-height:1.7;
+  color:var(--blue);
+  max-width:30em;
+}
+.era p.text{margin:0;max-width:38em;color:var(--ink-2)}
+.era p.text b{color:var(--ink);font-weight:500}
+.era .names{color:var(--ink);font-weight:500}
+
+.meta{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:1px;
+  background:var(--rule-soft);
+  border:1px solid var(--rule-soft);
+  margin-top:4px;
+}
+.meta div{
+  background:var(--paper);
+  padding:14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.meta dt,.meta .k{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  color:var(--ink-3);
+  text-transform:uppercase;
+}
+.meta .v{font-size:.95rem;line-height:1.6;color:var(--ink)}
+
+/* ---------- table ---------- */
+.table-block{padding-block:56px 0}
+h3{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-size:1.5rem;
+  font-weight:700;
+  margin:0 0 6px;
+}
+.table-scroll{overflow-x:auto;margin-top:24px;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;min-width:880px;font-size:.92rem}
+th,td{
+  text-align:left;
+  padding:13px 16px 13px 0;
+  vertical-align:top;
+  border-bottom:1px solid var(--rule-soft);
+  line-height:1.65;
+}
+th{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:400;
+  padding-block:12px;
+  white-space:nowrap;
+}
+td.era-cell{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-weight:600;
+  color:var(--ink);
+  white-space:nowrap;
+}
+td.yr{
+  font-family:"IBM Plex Mono",monospace;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink-3);
+  white-space:nowrap;
+}
+
+/* ---------- coda ---------- */
+.coda{
+  margin-top:64px;
+  border-top:2px solid var(--ink);
+  padding-top:36px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:40px;
+}
+.coda h3{font-size:1.7rem}
+.coda p{margin:0 0 14px;color:var(--ink-2);max-width:34em}
+.coda p:last-child{margin-bottom:0}
+.pull{
+  font-family:"Noto Serif TC",Georgia,serif;
+  font-size:1.3rem;
+  line-height:1.65;
+  color:var(--ink);
+  border-left:3px solid var(--signal);
+  padding-left:20px;
+  margin:0;
+}
+footer{
+  margin-top:56px;
+  padding-top:18px;
+  border-top:1px solid var(--rule);
+  color:var(--ink-3);
+  font-size:.82rem;
+}
+footer a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue-soft)}
+footer a:hover{border-bottom-width:2px}
+.footlinks{margin-top:12px;line-height:2}
+
+@media (max-width:760px){
+  .step{grid-template-columns:44px minmax(0,1fr);gap:10px 16px}
+  .step-tag{grid-column:2;text-align:left}
+  .step-tag b{display:inline;margin-right:10px}
+  .era{grid-template-columns:1fr;gap:22px;padding-block:36px}
+  .era-rail{
+    flex-direction:row;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px 18px;
+  }
+  .numeral{font-size:1.8rem}
+  .pos{width:100%;margin-top:0}
+  .coda{grid-template-columns:1fr;gap:28px}
+  .masthead{padding-block:40px 32px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <nav class="backbar"><a href="../">← 回 QA 教育訓練</a></nav>
+
+  <header class="masthead">
+    <div class="eyebrow label">
+      <span>品質管理 · 一二〇年</span><span class="dot">●</span>
+      <span>從檢出到預測</span><span class="dot">●</span>
+      <span>Shewhart 1924 → Now</span>
+    </div>
+    <h1>品保的進化史</h1>
+    <p class="deck">品保這一百多年只做了一件事:把<strong>介入的時點</strong>一路往前搬。用台灣品保界最熟的講法,就是從「品質是檢驗出來的」走到「品質是製造出來的」,再走到「設計出來的」「管理出來的」——最後變成全面品管。工具換了六代,方向從來沒變過。</p>
+  </header>
+
+  <section class="chart-block">
+    <div class="chart-frame">
+      <svg viewBox="0 0 900 392" role="img" aria-label="一九〇〇年至今品保介入時點的趨勢圖,以管制圖形式呈現,自一九一一年起連續九點單向下移">
+        <title>介入時點趨勢圖(1900–2024)</title>
+
+        <!-- band between the two limits -->
+        <rect class="band" x="104" y="60" width="768" height="260"></rect>
+
+        <!-- limits &amp; centre line -->
+        <line class="limit" x1="104" y1="60" x2="872" y2="60"></line>
+        <line class="centerline" x1="104" y1="190" x2="872" y2="190"></line>
+        <line class="limit" x1="104" y1="320" x2="872" y2="320"></line>
+
+        <!-- y labels -->
+        <text class="axis" x="96" y="56" text-anchor="end">純檢出 UCL</text>
+        <text class="axis" x="96" y="194" text-anchor="end">中心線 CL</text>
+        <text class="axis" x="96" y="324" text-anchor="end">純預防 LCL</text>
+        <text class="axis" x="26" y="190" text-anchor="middle" transform="rotate(-90 26 190)">介入時點</text>
+
+        <!-- x axis -->
+        <line class="grid" x1="104" y1="332" x2="872" y2="332"></line>
+        <g class="tick" text-anchor="middle">
+          <text x="104" y="352">1900</text>
+          <text x="252" y="352">1925</text>
+          <text x="399" y="352">1950</text>
+          <text x="547" y="352">1975</text>
+          <text x="695" y="352">2000</text>
+          <text x="842" y="352">2025</text>
+        </g>
+        <text class="axis" x="872" y="378" text-anchor="end">年　YEAR</text>
+
+        <!-- series -->
+        <polyline class="series" points="104,86 169,73 246,133 399,169 470,195 571,216 618,232 695,258 760,281 837,299"></polyline>
+
+        <circle class="pt" cx="104" cy="86" r="5"></circle>
+        <circle class="pt" cx="169" cy="73" r="5"></circle>
+        <circle class="pt" cx="246" cy="133" r="5"></circle>
+        <circle class="pt" cx="399" cy="169" r="5"></circle>
+        <circle class="pt" cx="470" cy="195" r="5"></circle>
+        <circle class="pt" cx="571" cy="216" r="5"></circle>
+        <circle class="pt" cx="618" cy="232" r="5"></circle>
+        <circle class="pt" cx="695" cy="258" r="5"></circle>
+        <circle class="pt" cx="760" cy="281" r="5"></circle>
+        <circle class="pt pt-now" cx="837" cy="299" r="5.5"></circle>
+
+        <g class="ptlabel" text-anchor="middle">
+          <text x="104" y="73">匠人自檢</text>
+          <text x="169" y="95">專職檢驗</text>
+          <text x="246" y="120">管制圖</text>
+          <text x="399" y="156">PDCA</text>
+          <text x="470" y="182">品管圈</text>
+          <text x="571" y="203">零缺點</text>
+          <text x="618" y="219">ISO 9001</text>
+          <text x="695" y="245">六標準差</text>
+          <text x="760" y="268">即時 SPC</text>
+          <text x="837" y="286">AI 預測</text>
+        </g>
+
+        <!-- annotation -->
+        <text class="note" x="140" y="268">1911 年之後,連續九點單向下移。</text>
+        <text class="note-sub" x="140" y="290">依判異準則,這叫「趨勢」——品保史本身就是一條失控的線。</text>
+      </svg>
+    </div>
+    <p class="cap">縱軸為「介入時點」:越靠上,越是等不良做出來以後才處理;越靠下,越是在源頭就讓不良不會發生。每一個點是該年代的主流做法,不是取代前一代——管制圖畫了一百年,今天還在跑。</p>
+  </section>
+
+  <section class="ladder">
+    <h3>五句口號,就是整部進化史</h3>
+    <p class="cap">同一句型換五個動詞,把責任從檢驗台一路往前搬到全公司。這五句話在台灣品保現場流傳了幾十年,它不是標語,是五個真實的管理典範。</p>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-n">01</div>
+        <div>
+          <div class="step-slogan">品質是<em>檢驗</em>出來的</div>
+          <span class="step-note">把「做」和「檢」拆開,靠專職檢驗員在出貨前攔截。有效,但不良已經發生,料工費全付掉了——而且檢驗只能告訴你多少不良,不能告訴你為什麼。</span>
+        </div>
+        <div class="step-tag"><b>QC · 檢驗</b>紀元 II<br>1900s–1930s</div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">02</div>
+        <div>
+          <div class="step-slogan">品質是<em>製造</em>出來的</div>
+          <span class="step-note">休哈特的管制圖把焦點從成品移到製程:控制變異,好品質自然產出。這是第一次不靠挑選也能保證品質,也是「品保是生產出來的」這句話真正的起點。</span>
+        </div>
+        <div class="step-tag"><b>SQC · 製程管制</b>紀元 III<br>1924–1950</div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">03</div>
+        <div>
+          <div class="step-slogan">品質是<em>設計</em>出來的</div>
+          <span class="step-note">製程管制的極限是:圖面本身就不合理時,管得再穩也沒用。田口玄一的參數設計、後來的 APQP 與 DFMEA,都是把品質往設計端推——這一步之後,QA(品質保證)才從 QC 裡分出來。</span>
+        </div>
+        <div class="step-tag"><b>QA · 品質保證</b>紀元 IV<br>1950s–1970s</div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">04</div>
+        <div>
+          <div class="step-slogan">品質是<em>管理</em>出來的</div>
+          <span class="step-note">費根堡的 TQC、日本的 CWQC、歐美 1980 年代接手的 TQM 全面品質管理:品質不再是某個部門的 KPI,採購、業務、人資、研發全都算數,由最高管理階層負責。這是本篇所說的「全面品管」。</span>
+        </div>
+        <div class="step-tag"><b>TQM · 全面品管</b>紀元 IV–V<br>1956–1990s</div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">05</div>
+        <div>
+          <div class="step-slogan">品質是<em>習慣</em>出來的</div>
+          <span class="step-note">制度寫得再完整,稽核一走就鬆掉。最後一哩是文化:防呆讓人做不出錯、資料讓異常自己現形、現場願意主動按下安燈。品質內化成日常動作,才不需要靠人盯。</span>
+        </div>
+        <div class="step-tag"><b>品質文化</b>紀元 V–VI<br>1990s–現在</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="eras">
+
+    <article class="era">
+      <div class="era-rail">
+        <div class="numeral serif">I</div>
+        <div class="years">— 1900</div>
+        <div class="pos" style="--x:.90">
+          <div class="track"></div>
+          <div class="track-ends"><span>預防</span><span>檢出</span></div>
+        </div>
+      </div>
+      <div class="era-body">
+        <h2>匠人紀元:品質是做的人自己的名字</h2>
+        <p class="thesis">製作、檢查、交付是同一雙手,所以不需要「品保」這個部門。</p>
+        <p class="text">工廠出現以前,品質靠兩件事擔保:一是行會印記,金匠、錫匠在成品上打上自己與公會的記號,成色不對就砸招牌;二是師徒制,公差不是寫在圖面上,而是練在手感裡。這套機制精準,卻完全無法複製——<b>一天要出一萬件的時候,個人信譽就失效了</b>。工業革命把製作和使用者之間拉開了距離,品質從此需要另一套語言。</p>
+        <div class="meta">
+          <div><span class="k">不良的定義</span><span class="v">手藝不到位</span></div>
+          <div><span class="k">誰負責</span><span class="v">做的那個人</span></div>
+          <div><span class="k">代表工具</span><span class="v">行會印記、師徒制、樣板比對</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-rail">
+        <div class="numeral serif">II</div>
+        <div class="years">1900 – 1930</div>
+        <div class="pos" style="--x:.95">
+          <div class="track"></div>
+          <div class="track-ends"><span>預防</span><span>檢出</span></div>
+        </div>
+      </div>
+      <div class="era-body">
+        <h2>檢驗紀元:把「做」和「檢」拆開</h2>
+        <p class="thesis">品質等於出貨前把壞的挑出來——代價是不良已經發生,錢已經付掉了。</p>
+        <p class="text"><span class="names">泰勒(F. W. Taylor)</span>1911 年的《科學管理原理》把工作拆解成標準動作,也順手把檢查從製造手上拿走:工廠第一次有了專職檢驗員與獨立的檢驗課。福特的生產線再把全檢制度化,通止規(go / no-go gauge)讓判定不需要判斷力,只需要一把量規。</p>
+        <p class="text">這是品保職能真正誕生的時刻,但它從一開始就帶著原罪:<b>檢驗只會告訴你有多少不良,不會告訴你為什麼</b>。全檢成本高、疲勞漏檢,而且批量越大越擋不住。</p>
+        <div class="meta">
+          <div><span class="k">不良的定義</span><span class="v">超出規格的成品</span></div>
+          <div><span class="k">誰負責</span><span class="v">檢驗部門</span></div>
+          <div><span class="k">代表工具</span><span class="v">全檢、通止規、檢驗成績書</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-rail">
+        <div class="numeral serif">III</div>
+        <div class="years">1924 – 1950</div>
+        <div class="pos" style="--x:.72">
+          <div class="track"></div>
+          <div class="track-ends"><span>預防</span><span>檢出</span></div>
+        </div>
+      </div>
+      <div class="era-body">
+        <h2>統計紀元:檢驗的對象從成品變成製程</h2>
+        <p class="thesis">變異一定存在;要判斷的不是「這件好不好」,而是「製程該不該動」。</p>
+        <p class="text">1924 年 5 月 16 日,<span class="names">休哈特(Walter A. Shewhart)</span>在貝爾實驗室的一張內部備忘錄上畫下第一張管制圖,把變異拆成機遇原因與非機遇原因,用 3σ 界限決定何時該出手——這一頁紙是整個現代品保的分水嶺,1931 年成書為《Economic Control of Quality of Manufactured Product》。</p>
+        <p class="text">同一個實驗室裡,<span class="names">道奇(H. F. Dodge)與羅米格(H. G. Romig)</span>建立抽樣檢驗理論:AQL、AOQL、OC 曲線,讓「不全檢」第一次有了數學上的正當性。二戰把這套東西推成國家規格——1949 年 JAN-STD-105、1950 年 MIL-STD-105,軍規逼著整個供應鏈學會了統計。</p>
+        <p class="text">「<b>品質是製造出來的</b>」這句話就誕生在這一代:只要製程穩定受控,好品質是產出來的結果,不必靠事後挑選。品保也從這裡學會兩句到今天還在用的話——<b>製程能力(Cp/Cpk)</b>,以及「規格內」不等於「受控」。</p>
+        <div class="meta">
+          <div><span class="k">不良的定義</span><span class="v">製程出現非機遇變異</span></div>
+          <div><span class="k">誰負責</span><span class="v">品管工程師</span></div>
+          <div><span class="k">代表工具</span><span class="v">X̄-R 管制圖、抽樣計畫、Cp / Cpk</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-rail">
+        <div class="numeral serif">IV</div>
+        <div class="years">1950 – 1980</div>
+        <div class="pos" style="--x:.44">
+          <div class="track"></div>
+          <div class="track-ends"><span>預防</span><span>檢出</span></div>
+        </div>
+      </div>
+      <div class="era-body">
+        <h2>保證紀元:品質變成經營者的責任</h2>
+        <p class="thesis">品質不是檢出來的,是設計與管理出來的;而且它是全公司的事,不是品管課的事。</p>
+        <p class="text">1950 年 <span class="names">戴明(W. E. Deming)</span>受日本科學技術連盟(JUSE)之邀赴日講學,1954 年<span class="names">朱蘭(J. M. Juran)</span>跟進;1951 年設立戴明獎。戴明帶去 PDCA 循環與十四要點,核心主張非常直接:<b>停止依賴大量檢驗來取得品質</b>。朱蘭則把品質翻譯成管理層聽得懂的語言——品質三部曲(規劃、管制、改善)、柏拉圖原理,以及「品質成本」,讓不良第一次可以用錢報上去。</p>
+        <p class="text"><span class="names">費根堡(A. V. Feigenbaum)</span>1956 年在《哈佛商業評論》提出<b>全面品質管制(TQC)</b>——這是「全面品管」的原點:品質不是製造部門的事,而是從設計、採購、製造到服務的全流程共同責任。日本接手後發展成 CWQC(全公司品質管制),把它從管理技術變成經營體質;<span class="names">石川馨</span>推動品管圈與特性要因圖(魚骨圖),把改善的權力交還給現場作業員;<span class="names">田口玄一</span>用損失函數與參數設計,主張偏離目標值就是損失,把品質往設計階段推;<span class="names">克勞斯比(P. Crosby)</span>1979 年以《Quality is Free》喊出零缺點,並指出「不符合要求的代價」才是真正的品質成本。</p>
+        <p class="text">日本製造的崛起,就是這一代方法的實證。也是在這一代,<b>QC(品管)與 QA(品保)分家</b>:一個管當下這批貨,一個管整個系統能不能持續做出好貨。</p>
+        <div class="meta">
+          <div><span class="k">不良的定義</span><span class="v">系統與設計的缺陷</span></div>
+          <div><span class="k">誰負責</span><span class="v">最高管理階層 + 全員</span></div>
+          <div><span class="k">代表工具</span><span class="v">PDCA、QC 七大手法、品管圈、品質成本、實驗設計</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-rail">
+        <div class="numeral serif">V</div>
+        <div class="years">1980 – 2000</div>
+        <div class="pos" style="--x:.29">
+          <div class="track"></div>
+          <div class="track-ends"><span>預防</span><span>檢出</span></div>
+        </div>
+      </div>
+      <div class="era-body">
+        <h2>系統紀元:品質被寫成可稽核的制度</h2>
+        <p class="thesis">好品質不能只存在於某位廠長的腦袋裡,它必須是文件、是稽核、是可以被第三方驗證的。</p>
+        <p class="text">1980 年代,日本製造的壓力把 TQC 逼回歐美,改寫成 <b>TQM(全面品質管理)</b>:顧客導向、持續改善、全員參與、以事實管理。美國 1987 年立法設立馬康包立治國家品質獎(Malcolm Baldrige National Quality Award),用領導、策略、顧客、流程、人力、成果七大構面把 TQM 變成可評分的經營模式——全面品管至此不再只是口號,而是一套評鑑得出分數的制度。</p>
+        <p class="text">英國 BS 5750 在 1979 年鋪路,1987 年 ISO 9001 首版發布——品質第一次跨國、跨產業地被標準化,供應商不必逐家稽核,一張證書就能談生意。汽車業走得更遠:1994 年 QS-9000,2016 年整併為 IATF 16949,並沉澱出沿用至今的五大核心工具 <b>APQP、FMEA、MSA、SPC、PPAP</b>——其中 FMEA 與 MSA 特別關鍵,前者逼你在量產前就把失效想過一遍,後者逼你先證明量測系統本身可信。</p>
+        <p class="text">另一條線在摩托羅拉:1986 年 <span class="names">Bill Smith</span> 提出六標準差,1995 年 <span class="names">Jack Welch</span> 在奇異把它變成經營語言——DMAIC、3.4 DPMO、綠帶黑帶,以及最有效的一招:<b>每個專案都要報出省下多少錢</b>。同時期,1990 年《改變世界的機器》讓精實生產走出豐田,自働化、安燈、防呆(poka-yoke)進入全球辭典,後來與六標準差合流為精實六標準差。</p>
+        <div class="meta">
+          <div><span class="k">不良的定義</span><span class="v">偏離目標值造成的損失</span></div>
+          <div><span class="k">誰負責</span><span class="v">跨部門專案團隊</span></div>
+          <div><span class="k">代表工具</span><span class="v">TQM、ISO 9001、DMAIC、FMEA、MSA、防呆</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-rail">
+        <div class="numeral serif">VI</div>
+        <div class="years">2000 – 現在</div>
+        <div class="pos" style="--x:.11">
+          <div class="track"></div>
+          <div class="track-ends"><span>預防</span><span>檢出</span></div>
+        </div>
+      </div>
+      <div class="era-body">
+        <h2>數據紀元:從「等它出界」到「預測它會出界」</h2>
+        <p class="thesis">管制圖再往前推一步:不是等點超出界限才反應,而是在它還沒超出前就知道。</p>
+        <p class="text">制度面先鬆綁:ISO 9001:2000 改為過程導向,2015 年版寫進<b>風險基礎思維</b>與組織環境,不再只看有沒有程序書,而是問你有沒有想過會出什麼事。文件品保的年代結束了。</p>
+        <p class="text">現場面則整個即時化:MES 把工單、機台、量測值串成一條可追溯的鏈;AOI 與深度學習接手人眼做不穩的外觀判定;SPC 從月報表變成線上警報,超規當下停線而不是隔天檢討;製藥與醫材把電子紀錄的可信度寫成 <b>ALCOA+</b> 原則。工業 4.0 之後,「抽樣」在某些製程上甚至開始失去意義——因為每一件的數據都留下來了。</p>
+        <p class="text">預測性品質與數位分身是這條線的最前端:用製程參數預測特性值,在不良發生前調整。這正是休哈特在 1924 年那張紙上的問題,只是換了算力。</p>
+        <div class="meta">
+          <div><span class="k">不良的定義</span><span class="v">可被預測、應被攔截的風險</span></div>
+          <div><span class="k">誰負責</span><span class="v">系統與資料流(人做判斷)</span></div>
+          <div><span class="k">代表工具</span><span class="v">MES / 即時 SPC、AOI 與 AI 視覺、資料追溯、預測性品質</span></div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="table-block">
+    <h3>一張表看完六個紀元</h3>
+    <p class="cap">同一個問題「不良算誰的」,每個時代給的答案都不一樣。</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>紀元</th>
+            <th>關鍵年份</th>
+            <th>那個年代的口號</th>
+            <th>品質是誰的事</th>
+            <th>不良的定義</th>
+            <th>代表工具</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="era-cell">I 匠人</td>
+            <td class="yr">— 1900</td>
+            <td>品質是師傅的名聲</td>
+            <td>做的那個人</td>
+            <td>手藝不到位</td>
+            <td>行會印記、師徒制</td>
+          </tr>
+          <tr>
+            <td class="era-cell">II 檢驗</td>
+            <td class="yr">1911</td>
+            <td>品質是檢驗出來的</td>
+            <td>檢驗部門</td>
+            <td>超出規格的成品</td>
+            <td>全檢、通止規</td>
+          </tr>
+          <tr>
+            <td class="era-cell">III 統計</td>
+            <td class="yr">1924</td>
+            <td>品質是製造出來的</td>
+            <td>品管工程師</td>
+            <td>製程出現非機遇變異</td>
+            <td>管制圖、抽樣計畫、Cpk</td>
+          </tr>
+          <tr>
+            <td class="era-cell">IV 保證</td>
+            <td class="yr">1950</td>
+            <td>品質是設計出來的</td>
+            <td>最高管理階層與全員</td>
+            <td>系統與設計的缺陷</td>
+            <td>PDCA、品管圈、品質成本</td>
+          </tr>
+          <tr>
+            <td class="era-cell">V 系統</td>
+            <td class="yr">1987</td>
+            <td>品質是管理出來的</td>
+            <td>跨部門專案團隊</td>
+            <td>偏離目標值造成的損失</td>
+            <td>TQM、ISO 9001、DMAIC</td>
+          </tr>
+          <tr>
+            <td class="era-cell">VI 數據</td>
+            <td class="yr">2015</td>
+            <td>品質是習慣出來的</td>
+            <td>系統與資料流</td>
+            <td>可被預測的風險</td>
+            <td>即時 SPC、AI 視覺、追溯</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="coda">
+    <div>
+      <h3>這條線還沒停</h3>
+      <p>把六個紀元疊起來看,會發現它們不是取代關係,而是<b>沉積</b>。今天一間工廠裡,匠人的手感還在老師傅身上,全檢還在最終出貨站,管制圖還在製程端跑,PDCA 還在每週會議上,ISO 條文還在稽核前被翻出來,AI 模型才剛上線兩個月——六層地質同時運作。</p>
+      <p>每一代新方法真正改變的不是工具,是<b>「發現問題的時點」</b>:從交貨後、到出貨前、到製程中、到設計時、到還沒發生。這也是為什麼品保的成熟度,從來不看有幾份程序書,而看你平均在多早的地方攔住問題。</p>
+    </div>
+    <div>
+      <p class="pull">「檢驗品質不能改善品質,因為不良品早就做出來了。品質必須被做進去,而不是被檢進去。」</p>
+      <p class="cap" style="margin-top:16px">—— 戴明,十四要點第三點的核心主張,1982</p>
+      <p style="margin-top:26px">下一個問題已經浮出來:當每一件產品的數據都被記錄、判定由模型給出,<b>誰為模型的誤判負責?</b>品保的第七個紀元,大概就是從回答這題開始。</p>
+    </div>
+  </section>
+
+  <footer>
+    年份依各方法首次發表或標準首版發布為準。人物譯名採台灣慣用寫法。「介入時點」為本文用於對照各年代的比較軸,非既有量表。
+    <div class="footlinks">
+      延伸閱讀:<a href="../basics/quality-map/">品質關卡全貌</a>(第 II、III 紀元的現代版)　·
+      <a href="../iqc/sampling/">抽樣計畫</a>(第 III 紀元)　·
+      <a href="../ncr/car/">矯正措施與 8D</a>(第 IV、V 紀元)<br>
+      <a href="../">← 回 QA 教育訓練首頁</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

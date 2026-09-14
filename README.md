@@ -20,6 +20,12 @@
 | [第三章 · 成品測試](https://loin123-rgb.github.io/qa-training/testing/) | 測試流程、流量點與誤差限、校正設定點 | 6h + 實作 |
 | [第四章 · 不良品與矯正措施](https://loin123-rgb.github.io/qa-training/ncr/) | 不合格品處置、矯正措施與 8D | 4h |
 | [自我檢核](https://loin123-rgb.github.io/qa-training/checklist/) | 30 / 60 / 90 天檢核表 | — |
+| [公司手冊](https://loin123-rgb.github.io/qa-training/handbook/) | 品檢組實際編製的三份手冊:進料檢驗、製程巡檢、彙整資料與邏輯分析 | 依手冊 |
+
+## 公司手冊區
+
+`handbook/` 收錄品檢組實際編製的手冊,由 Word 原檔自動轉換,**內容未經改寫**。
+公開版已移除內部系統操作截圖(含登入者姓名與內部系統資訊)。
 
 ## 重要聲明
 
